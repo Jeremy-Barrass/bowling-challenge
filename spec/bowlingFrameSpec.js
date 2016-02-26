@@ -15,6 +15,12 @@ describe('bowlingFrame', function(){
       expect(bowlingFrame.roll2).toEqual(3);
     });
 
+    it ('skips roll2 if roll1 equals 10', function(){
+      bowlingFrame.setFrame(10);
+      bowlingFrame.setFrame(1);
+      expect(bowlingFrame.roll2).toBeNull();
+    });
+
     it ('has a bonus property', function(){
       expect(bowlingFrame.bonus).toBeDefined();
     });
