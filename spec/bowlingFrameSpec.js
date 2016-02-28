@@ -103,4 +103,11 @@ describe('bowlingFrame', function(){
     });
   });
 
+  describe('setBonus', function(){
+    it ('sets the Bonus property', function(){
+      bowlingFrame.setBonus(lane.bowl2());
+      expect(bowlingFrame.bonus).toEqual(lane.bowl2());
+    });
+  });
+
 });

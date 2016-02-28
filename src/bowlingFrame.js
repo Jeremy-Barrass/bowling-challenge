@@ -8,7 +8,7 @@ function BowlingFrame(){
 }
 
 BowlingFrame.prototype.viewPins = function(){
-  return this.pins
+  return this.pins;
 };
 
 BowlingFrame.prototype.setFrame = function(pinsDown){
@@ -20,7 +20,7 @@ BowlingFrame.prototype.setFrame = function(pinsDown){
 };
 
 BowlingFrame.prototype.viewFrame = function(){
-  return this.roll1 + this.roll2 + this.bonus
+  return this.roll1 + this.roll2 + this.bonus;
 };
 
 BowlingFrame.prototype.setRoll1 = function(pinsDown){
@@ -47,4 +47,8 @@ BowlingFrame.prototype.isStrike = function(){
 
 BowlingFrame.prototype.isSpare = function(){
   return this.spare;
+};
+
+BowlingFrame.prototype.setBonus = function(bonus){
+  this.bonus = bonus;
 };

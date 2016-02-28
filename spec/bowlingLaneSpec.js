@@ -19,20 +19,16 @@ describe('bowlingLane',function(){
     });
   });
 
-  describe('runFrame', function(){
+  describe('runFrames', function(){
     it('calls the frame\'s setFrame function', function(){
-      bowlingLane.runFrame();
+      bowlingLane.runFrames();
       expect(typeof bframe.setFrame).toEqual('function');
     });
+  });
 
-    it('passes the completed frame to the frames array', function(){
-      bowlingLane.runFrame();
-      expect(bowlingLane.bframes.length).toEqual(1);
-    });
-
-    it('generates a new frame', function(){
-      bowlingLane.runFrame();
-      expect(bowlingLane.bframe).not.toBe('Spy Object');
+  describe('generateFrames', function(){
+    it('pre-generates the first nine frames required for a game and pushes them to the frames array', function(){
+      expect(bowlingLane.bframes.length).toBe(9)
     });
   });
 });
