@@ -13,16 +13,24 @@ BowlingFrame.prototype.viewPins = function(){
 
 BowlingFrame.prototype.setFrame = function(pinsDown){
   if (this.roll1 === null) {
-    this.roll1 = pinsDown;
-    this.pins -= this.roll1;
+    this.setRoll1(pinsDown);
   } else if (this.roll2 === null) {
-    if (this.roll1 !== 10) {
-      this.roll2 = pinsDown;
-      this.pins -= this.roll2;
-    }
+    this.setRoll2(pinsDown);
   }
 };
 
 BowlingFrame.prototype.viewFrame = function(){
   return this.roll1 + this.roll2 + this.bonus
+};
+
+BowlingFrame.prototype.setRoll1 = function(pinsDown){
+  this.roll1 = pinsDown;
+  this.pins -= this.roll1;
+};
+
+BowlingFrame.prototype.setRoll2 = function(pinsDown){
+  if (this.roll1 !== 10) {
+    this.roll2 = pinsDown;
+    this.pins -= this.roll2;
+  }
 };
