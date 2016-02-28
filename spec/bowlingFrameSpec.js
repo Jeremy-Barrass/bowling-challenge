@@ -3,6 +3,16 @@ describe('bowlingFrame', function(){
     bowlingFrame = new BowlingFrame;
   });
 
+  it('has a pins property', function(){
+    expect(bowlingFrame.pins).toBeDefined();
+  });
+
+  describe('viewPins', function(){
+    it('returns the number of pins standing', function(){
+      expect(bowlingFrame.viewPins()).toEqual(bowlingFrame.pins);
+    });
+  });
+
   describe('setFrame', function(){
     it ('passes the number of pins fallen to the roll1 property', function(){
       bowlingFrame.setFrame(4);

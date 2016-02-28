@@ -2,14 +2,19 @@ function BowlingFrame(){
   this.roll1 = null;
   this.roll2 = null;
   this.bonus = null;
+  this.pins = 10;
 }
 
-BowlingFrame.prototype.setFrame = function(pins){
+BowlingFrame.prototype.viewPins = function(){
+  return this.pins
+};
+
+BowlingFrame.prototype.setFrame = function(pinsDown){
   if (this.roll1 === null) {
-    this.roll1 = pins;
+    this.roll1 = pinsDown;
   } else if (this.roll2 === null) {
     if (this.roll1 !== 10) {
-      this.roll2 = pins;
+      this.roll2 = pinsDown;
     }
   }
 };

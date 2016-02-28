@@ -3,13 +3,13 @@ function BowlingLane(frame){
   this.bframe = frame;
 }
 
-BowlingLane.prototype.bowl = function(){
+BowlingLane.prototype.bowl = function(pins){
   function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min)) + min;
   }
-  return getRandomInt(1,11)
+  return getRandomInt(1,pins + 1)
 };
 
 BowlingLane.prototype.runFrame = function(){
-  this.bframe.setFrame(this.bowl());
+  this.bframe.setFrame(this.bowl(this.bframe.viewPins()));
 };
