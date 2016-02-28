@@ -14,20 +14,32 @@ describe('bowlingFrame', function(){
   });
 
   describe('setFrame', function(){
+    beforeEach(function(){
+      lane = {bowl: function(){}, bowl2: function(){}, bowl3: function(){} };
+      spyOn(lane, 'bowl').and.returnValue(4);
+      spyOn(lane, 'bowl2').and.returnValue(3);
+      spyOn(lane, 'bowl3').and.returnValue(10);
+    });
+
     it ('passes the number of pins fallen to the roll1 property', function(){
-      bowlingFrame.setFrame(4);
-      expect(bowlingFrame.roll1).toEqual(4);
+      bowlingFrame.setFrame(lane.bowl());
+      expect(bowlingFrame.roll1).toEqual(lane.bowl());
+    });
+
+    it ('deducts the roll1 property from the pins property', function(){
+      bowlingFrame.setFrame(lane.bowl());
+      expect(bowlingFrame.viewPins()).toBeLessThan(bowlingFrame.pins + bowlingFrame.roll1);
     });
 
     it ('passes the number of pins fallen to the roll2 property', function(){
-      bowlingFrame.setFrame(4);
-      bowlingFrame.setFrame(3);
-      expect(bowlingFrame.roll2).toEqual(3);
+      bowlingFrame.setFrame(lane.bowl());
+      bowlingFrame.setFrame(lane.bowl2());
+      expect(bowlingFrame.roll2).toEqual(lane.bowl2());
     });
 
     it ('skips roll2 if roll1 equals 10', function(){
-      bowlingFrame.setFrame(10);
-      bowlingFrame.setFrame(1);
+      bowlingFrame.setFrame(lane.bowl3());
+      bowlingFrame.setFrame(lane.bowl());
       expect(bowlingFrame.roll2).toBeNull();
     });
 
@@ -38,8 +50,8 @@ describe('bowlingFrame', function(){
 
   describe('viewFrame', function(){
     it ('returns the total of all rolls for the frame property', function(){
-      bowlingFrame.setFrame(4);
-      bowlingFrame.setFrame(3);
+      bowlingFrame.setFrame(lane.bowl());
+      bowlingFrame.setFrame(lane.bowl2());
       expect(bowlingFrame.viewFrame()).toEqual(bowlingFrame.roll1 + bowlingFrame.roll2);
     });
   });

@@ -1,8 +1,8 @@
 describe('bowlingLane',function(){
   beforeEach(function(){
     frame = {setFrame: function(){} , viewPins: function(){} };
-    spyOn(frame, 'setFrame')
-    spyOn(frame, 'viewPins').and.returnValue(5)
+    spyOn(frame, 'setFrame');
+    spyOn(frame, 'viewPins').and.returnValue(5);
     bowlingLane = new BowlingLane(frame);
   });
 
