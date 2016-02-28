@@ -23,10 +23,14 @@ describe('bowlingFrame', function(){
 
   describe('setFrame', function(){
     beforeEach(function(){
-      lane = {bowl: function(){}, bowl2: function(){}, bowl3: function(){} };
+      lane = {bowl: function(){},
+              bowl2: function(){},
+              bowl3: function(){},
+              bowl4: function(){} };
       spyOn(lane, 'bowl').and.returnValue(4);
       spyOn(lane, 'bowl2').and.returnValue(3);
       spyOn(lane, 'bowl3').and.returnValue(10);
+      spyOn(lane, 'bowl4').and.returnValue(6);
     });
 
     describe('setRoll1', function(){
@@ -36,7 +40,7 @@ describe('bowlingFrame', function(){
       });
 
       it ('deducts the roll1 property from the pins property', function(){
-        preBowl = bowlingFrame.pins;
+        var preBowl = bowlingFrame.pins;
         bowlingFrame.setFrame(lane.bowl());
         expect(bowlingFrame.viewPins()).toBeLessThan(preBowl);
       });
@@ -56,7 +60,7 @@ describe('bowlingFrame', function(){
 
       it ('deduct the roll2 property from the pins property', function(){
         bowlingFrame.setFrame(lane.bowl());
-        preBowl = bowlingFrame.pins;
+        var preBowl = bowlingFrame.pins;
         bowlingFrame.setFrame(lane.bowl2());
         expect(bowlingFrame.viewPins()).toBeLessThan(preBowl);
       });
@@ -65,6 +69,12 @@ describe('bowlingFrame', function(){
         bowlingFrame.setFrame(lane.bowl3());
         bowlingFrame.setFrame(lane.bowl());
         expect(bowlingFrame.roll2).toBeNull();
+      });
+
+      it ('sets the spare property to true if roll1+roll2 equals 10', function(){
+        bowlingFrame.setFrame(lane.bowl());
+        bowlingFrame.setFrame(lane.bowl4());
+        expect(bowlingFrame.spare).toBe(true);
       });
     });
 
@@ -84,6 +94,12 @@ describe('bowlingFrame', function(){
   describe('isStrike', function(){
     it ('returns the strike property', function(){
       expect(bowlingFrame.isStrike()).toEqual(bowlingFrame.strike);
+    });
+  });
+
+  describe('isSpare', function(){
+    it ('returns the spare property', function(){
+      expect(bowlingFrame.isSpare()).toEqual(bowlingFrame.spare);
     });
   });
 

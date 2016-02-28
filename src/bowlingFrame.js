@@ -35,9 +35,16 @@ BowlingFrame.prototype.setRoll2 = function(pinsDown){
   if (this.roll1 !== 10) {
     this.roll2 = pinsDown;
     this.pins -= this.roll2;
+    if (this.roll1 + this.roll2 === 10) {
+      this.spare = true;
+    }
   }
 };
 
 BowlingFrame.prototype.isStrike = function(){
   return this.strike;
+};
+
+BowlingFrame.prototype.isSpare = function(){
+  return this.spare;
 };
