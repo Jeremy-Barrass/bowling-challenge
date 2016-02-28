@@ -26,6 +26,9 @@ BowlingFrame.prototype.viewFrame = function(){
 BowlingFrame.prototype.setRoll1 = function(pinsDown){
   this.roll1 = pinsDown;
   this.pins -= this.roll1;
+  if (this.roll1 === 10) {
+    this.strike = true;
+  }
 };
 
 BowlingFrame.prototype.setRoll2 = function(pinsDown){
@@ -33,4 +36,8 @@ BowlingFrame.prototype.setRoll2 = function(pinsDown){
     this.roll2 = pinsDown;
     this.pins -= this.roll2;
   }
+};
+
+BowlingFrame.prototype.isStrike = function(){
+  return this.strike;
 };
