@@ -16,6 +16,7 @@ BowlingFrame.prototype.setFrame = function(pinsDown){
   } else if (this.roll2 === null) {
     if (this.roll1 !== 10) {
       this.roll2 = pinsDown;
+      this.pins -= this.roll2;
     }
   }
 };

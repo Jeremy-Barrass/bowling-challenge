@@ -27,14 +27,22 @@ describe('bowlingFrame', function(){
     });
 
     it ('deducts the roll1 property from the pins property', function(){
+      preBowl = bowlingFrame.pins;
       bowlingFrame.setFrame(lane.bowl());
-      expect(bowlingFrame.viewPins()).toBeLessThan(bowlingFrame.pins + bowlingFrame.roll1);
+      expect(bowlingFrame.viewPins()).toBeLessThan(preBowl);
     });
 
     it ('passes the number of pins fallen to the roll2 property', function(){
       bowlingFrame.setFrame(lane.bowl());
       bowlingFrame.setFrame(lane.bowl2());
       expect(bowlingFrame.roll2).toEqual(lane.bowl2());
+    });
+
+    it ('deduct the roll2 property from the pins property', function(){
+      bowlingFrame.setFrame(lane.bowl());
+      preBowl = bowlingFrame.pins;
+      bowlingFrame.setFrame(lane.bowl2());
+      expect(bowlingFrame.viewPins()).toBeLessThan(preBowl);
     });
 
     it ('skips roll2 if roll1 equals 10', function(){
