@@ -3,6 +3,8 @@ function BowlingFrame(){
   this.roll2 = null;
   this.bonus = null;
   this.pins = 10;
+  this.strike = false;
+  this.spare = false;
 }
 
 BowlingFrame.prototype.viewPins = function(){

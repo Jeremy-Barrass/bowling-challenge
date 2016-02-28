@@ -7,6 +7,14 @@ describe('bowlingFrame', function(){
     expect(bowlingFrame.pins).toBeDefined();
   });
 
+  it('has a strike property', function(){
+    expect(bowlingFrame.strike).toBeDefined();
+  });
+
+  it('has a spare property', function(){
+    expect(bowlingFrame.spare).toBeDefined();
+  });
+
   describe('viewPins', function(){
     it('returns the number of pins standing', function(){
       expect(bowlingFrame.viewPins()).toEqual(bowlingFrame.pins);
